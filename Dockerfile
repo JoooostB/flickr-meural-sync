@@ -26,14 +26,11 @@ COPY . .
 RUN go get -d -v
 
 # Add support for custom args, to allow multi-arch builds
-ARG opts="CGO_ENABLED=0 GOOS=linux GOARCH=amd64"
-ENV opts="${opts}"
+ARG arch=amd64
 # Build the binary.
-RUN go build -ldflags='-w -s -extldflags "-static"' -a -o /go/bin/flickr-meural-sync .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=${arch} go build -ldflags='-w -s -extldflags "-static"' -a -o /go/bin/flickr-meural-sync .
 ########################v######
 FROM scratch
-
-ENV GIN_MODE=release
 
 # Import from builder.
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
