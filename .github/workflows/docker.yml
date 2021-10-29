@@ -32,4 +32,4 @@ jobs:
         push: true
         tags: |
           joooostb/flickr-meural-sync:latest
-          joooostb/flickr-meural-sync:${{ env.GITHUB_REF }}
+          joooostb/flickr-meural-sync:${GITHUB_REF##*/}
