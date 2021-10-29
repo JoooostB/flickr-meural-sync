@@ -1,6 +1,7 @@
-on: 
-  tags:
-    types: [created]
+on:
+  push:
+    tags:
+    - '*'
 
 jobs:
   releases-matrix:
