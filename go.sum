@@ -1,0 +1,4 @@
+github.com/joooostb/flickr v0.0.0-20211026173858-991014c86655 h1:/cZ9ECY3o6lXKTnZpWrMqwu94vqLcEUHAklq8r6hvO4=
+github.com/joooostb/flickr v0.0.0-20211026173858-991014c86655/go.mod h1:FBsxLAqW1cOg9MmACkmu4zZCL5OXhywXx4lVaK8cfak=
+gopkg.in/masci/flickr.v2 v2.0.0-20161216033441-3cc496dc15cd h1:YPHATuRxBJVPx0dQ3OZhvnBXqpIxQXAZiIRUOzIDYeI=
+gopkg.in/masci/flickr.v2 v2.0.0-20161216033441-3cc496dc15cd/go.mod h1:Z6PGcItVkgU75W5IIPijzhyzr0YO4rVCWOMYe6bHHBk=
