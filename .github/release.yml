@@ -24,3 +24,24 @@ jobs:
         goversion: "https://dl.google.com/go/go1.17.linux-amd64.tar.gz"
         binary_name: "flickr-meural-sync"
         extra_files: LICENSE README.md
+        
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v1
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        build-args: CGO_ENABLED=0 GOOS=${{ matrix.goos }} GOARCH=${{ matrix.goarch }}
+        push: true
+        tags: 
+          - joooostb/flickr-meural-sync:latest
+          - joooostb/flickr-meural-sync:${{ GITHUB_REF }}
