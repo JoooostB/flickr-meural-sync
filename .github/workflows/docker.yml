@@ -10,7 +10,7 @@ jobs:
       matrix:
         # build and publish in parallel: linux/386, linux/amd64, windows/386, windows/amd64, darwin/amd64 
         goos: [linux]
-        goarch: ["386", amd64, arm, arm64]
+        goarch: ["386", amd64, arm64]
     steps:
     - name: Get version from tag
       id: vars
@@ -31,5 +31,8 @@ jobs:
       with:
         context: .
         build-args: arch=${{ matrix.goarch }}
+        platforms: linux/${{ matrix.goarch }}
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/flickr-meural-sync:${{steps.vars.outputs.tag}}
+        tags: |
+          ${{ secrets.DOCKERHUB_USERNAME }}/flickr-meural-sync:${{steps.vars.outputs.tag}}
+          ${{ secrets.DOCKERHUB_USERNAME }}/flickr-meural-sync:latest
