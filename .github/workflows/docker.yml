@@ -31,6 +31,6 @@ jobs:
       with:
         context: .
         build-args: |
-          opts="CGO_ENABLED=0 GOOS=linux GOARCH=${{ matrix.goarch }}"
+          opts="CGO_ENABLED=0 GOOS=linux GOARCH=${{matrix.goarch}}"
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/flickr-meural-sync:${{steps.vars.outputs.tag}}
