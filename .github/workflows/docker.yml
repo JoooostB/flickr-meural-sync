@@ -31,5 +31,5 @@ jobs:
         build-args: CGO_ENABLED=0 GOOS=linux GOARCH=${{ matrix.goarch }}
         push: true
         tags: |
-          joooostb/flickr-meural-sync:latest
-          joooostb/flickr-meural-sync:${{ env.GITHUB_REF }}
+          latest
+          ${{ env.GITHUB_REF }}
