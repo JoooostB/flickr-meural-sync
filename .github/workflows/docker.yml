@@ -11,7 +11,10 @@ jobs:
         # build and publish in parallel: linux/386, linux/amd64, windows/386, windows/amd64, darwin/amd64 
         goos: [linux]
         goarch: ["386", amd64, arm, arm64]
-    steps:    
+    steps:
+    - name: Get version from tag
+      id: vars
+      run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
     - name: Checkout
       uses: actions/checkout@v2
     - name: Set up QEMU
@@ -30,6 +33,4 @@ jobs:
         build-args: |
           opts="CGO_ENABLED=0 GOOS=linux GOARCH=${{ matrix.goarch }}"
         push: true
-        tags: |
-          joooostb/flickr-meural-sync:latest
-          joooostb/flickr-meural-sync:${GITHUB_REF##*/}
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/flickr-meural-sync:${{steps.vars.outputs.tag}}
